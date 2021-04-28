@@ -1,0 +1,22 @@
+<h1>hello world</h1>
+<input id="texto" type="text" />
+<button id="buttonAction">
+  push me
+</button>
+<div id="rtaServ"></div>
+
+<script type="text/javascript" src="/js/dependencies/sails.io.js"></script>
+<script type="text/javascript">
+    $("#buttonAction").click(() => {
+        var texto = $("#texto").val();
+        $.post(
+            "/saludo", {
+                texto: texto
+            },
+            data => {
+                console.log(data.message);
+                $("#rtaServ").html("<h1>" + data.message + "</h1>");
+            }
+        );
+    });
+</script>
