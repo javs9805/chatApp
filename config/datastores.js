@@ -45,11 +45,20 @@ module.exports.datastores = {
          *    (See https://sailsjs.com/config/datastores for help.)                 *
          *                                                                          *
          ***************************************************************************/
-        adapter: "sails-mysql",
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "chatapp",
-        port: "3306"
+        adapter: "sails-postgresql",
+        url: "postgres://tfjyfnpnbuaobr:12bdab94b7c8f92beb350a36ac6a19eba9f3a368a3494c4e8587e52263ed6692@ec2-54-167-152-185.compute-1.amazonaws.com:5432/dbfcpsp9t4ocal",
+        /* 
+             ssl:true,    <-- asi estaba        
+            */
+        ssl: {
+            sslmode: "require",
+            rejectUnauthorized: false
+        }
+        /*adapter: "sails-mysql",
+                                                                                                            host: "localhost",
+                                                                                                            user: "root",
+                                                                                                            password: "",
+                                                                                                            database: "chatapp",
+                                                                                                            port: "3306"*/
     }
 };
