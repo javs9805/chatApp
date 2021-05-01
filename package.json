@@ -35,5 +35,15 @@
     "license": "",
     "engines": {
         "node": "14.16.1"
-    }
+    },
+    "generators": {
+        "modules": {}
+    },
+    "hooks" : {
+        "sockets" : false
+    },
+    "_generatedWith": {
+          "sails": "1.0.2",
+          "sails-generate": "1.15.28"
+   }
 }
