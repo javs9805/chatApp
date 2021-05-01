@@ -154,7 +154,9 @@ module.exports = {
     },
 
   },
-
+  sockets: {
+    "onlyAllowOrigins": ["https://www.chat-app016.herokuapp.com/", "https://chat-app016.herokuapp.com/"]
+  },
 
 
   /***************************************************************************
