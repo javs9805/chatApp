@@ -9,6 +9,7 @@
         "@sailshq/lodash": "^3.10.3",
         "@sailshq/socket.io-redis": "^5.2.0",
         "grunt": "1.0.4",
+        "nodemon": "^2.0.7",
         "password-hash": "^1.2.2",
         "sails": "^1.4.2",
         "sails-hook-grunt": "^4.0.0",
@@ -35,8 +36,5 @@
     "license": "",
     "engines": {
         "node": "14.16.1"
-    },
-    "sockets":{
-        "onlyAllowOrigins": ["https://www.chat-app016.herokuapp.com/", "https://chat-app016.herokuapp.com/"]
     }
 }

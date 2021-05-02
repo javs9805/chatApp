@@ -10,7 +10,7 @@
  */
 
 module.exports.session = {
-
+  ssl:true,
   /***************************************************************************
   *                                                                          *
   * Session secret is automatically generated when your new app is created   *
