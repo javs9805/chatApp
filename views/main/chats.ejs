@@ -7,17 +7,17 @@
                 </div>
 
                 <div class=" messagesContainer" id="messagesContainer" style="border-radius: 5px;overflow: scroll; min-height: 25rem; max-height:25rem; background-color:#0e1418; padding:10px">
-                    <div class="mensaje-izq">
+                    <!-- <div class="mensaje-izq">
                         <div class="cuerpo_msj">
                             <div class="msj-texto">
                                 <p class="text-blue italic">
-                                    <%- username %>:
+                                    {{ username }}:
                                 </p>
                                 <p>{{ message }}</p>
                             </div>
                             <span class="tiempo"><i class="icon-clock"></i></span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- CAJON DE TEXTO -->
                 <div class="container row" style="border-radius: 10px; margin-top:2rem; padding:1rem; background-color: #34383b">
@@ -40,55 +40,50 @@
 
 <script>
     var username = $("#username").val();
-
+    var cantmsg = 0
     var MessageModel = Backbone.Model.extend({
-        urlRoot: "/messages"
+        urlRoot: '/messages',
     });
 
     var MessageCollection = Backbone.Collection.extend({
-        url: "/messages",
-        model: MessageModel
+        url: '/messages',
+        model: MessageModel,
     });
 
     var messages = new MessageCollection();
     messages.fetch();
 
-    $("#postMessageButton").click(function() {
+    var dt = new Date();
+    var ts =`${(dt.getMonth()+1).toString().padStart(2, '0')}/${
+        dt.getDate().toString().padStart(2, '0')}/${
+        dt.getFullYear().toString().padStart(4, '0')} ${
+        dt.getHours().toString().padStart(2, '0')}:${
+        dt.getMinutes().toString().padStart(2, '0')}:${
+        dt.getSeconds().toString().padStart(2, '0')}`
+
+    $("#postMessageButton").click(function(){
         var messageText = $("#message").val();
-        console.log(username);
-        messages.create({
-            message: messageText
-        }, {
-            wait: true
-        });
+        messages.create({message: messageText}, {wait: true});
         $("#message").val("");
     });
     _.templateSettings = {
-        interpolate: /\{\{(.+?)\}\}/g
-    };
-    var MessagesView = Backbone.View.extend({
-        el: "#messagesContainer",
-        initialize: function() {
-            this.collection.on("add", this.render, this);
-            this.render();
-        },
-
-        template: _.template(
-            '<div class="mensaje-izq"><div class="cuerpo_msj "><div class="msj-texto cyan darken-3"><h6><%- username %>:</h6><h6>{{ message }}</h6></div><span class="tiempo"><i class="icon-clock"></i></span></div></div>'
-        ),
-        render: function() {
+    interpolate : /\{\{(.+?)\}\}/g
+};
+var MessagesView = Backbone.View.extend({
+    el: '#messagesContainer',
+    initialize: function () {
+        this.collection.on('add', this.render, this);
+        this.render();
+    },
+    template: _.template('<div class="mensaje-izq"><div class="cuerpo_msj"><div class="msj-texto"><p class="text-blue italic">{{ username }}:</p><p>{{ message }}</p></div><span class="tiempo"><i class="icon-clock"></i></span></div></div>'),
+        render: function () {
             this.$el.html("");
-
-            this.collection.each(function(msg) {
-                console.log(msg);
+            this.collection.each(function(msg){
                 this.$el.append(this.template(msg.toJSON()));
-            }, this);
-            $("#messagesContainer").scrollTop(
-                $("#messagesContainer").prop("scrollHeight")
-            );
-        }
-    });
-    var mView = new MessagesView({
-        collection: messages
-    });
+            }, this)
+    }
+});
+  
+
+    
 </script>

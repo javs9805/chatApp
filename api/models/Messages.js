@@ -9,6 +9,7 @@ module.exports = {
     attributes: {
         userId: "NUMBER",
         username: "STRING",
-        message: "STRING"
+        message: "STRING",
+        timestamp:{ type: 'ref', columnType: 'timestamp' }
     }
 };
